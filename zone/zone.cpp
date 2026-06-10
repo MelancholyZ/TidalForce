@@ -156,7 +156,7 @@ bool Zone::Bootup(uint32 iZoneID, bool is_static, uint32 iGuildID) {
 
 	/* Set Logging */
 
-	LogSys.StartFileLogs(StringFormat("%s_port_%u", zone->GetShortName(), ZoneConfig::get()->ZonePort));
+	LogSys.StartFileLogs(StringFormat("%s_%u_port_%u", zonename, iGuildID, ZoneConfig::get()->ZonePort));
 
 	return true;
 }

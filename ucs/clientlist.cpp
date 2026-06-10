@@ -1021,7 +1021,7 @@ void Client::SendChannelMessage(std::string Message)
 
 	std::string ChannelName = Message.substr(1, MessageStart - 1);
 
-	LogInfo("[{}] tells [{}], [[{}]]", GetName(), ChannelName, Message.substr(MessageStart + 1));
+	//LogInfo("[{}] tells [{}], [[{}]]", GetName(), ChannelName, Message.substr(MessageStart + 1));
 
 	ChatChannel *RequiredChannel = ChannelList->FindChannel(ChannelName);
 	if (RequiredChannel == nullptr) {	// channel not found

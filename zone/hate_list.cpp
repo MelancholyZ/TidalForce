@@ -554,7 +554,7 @@ bool HateList::IsCharacterOnHateList(uint32 character_id)
 	auto iterator = list.begin();
 	while (iterator != list.end())
 	{
-		if ((*iterator)->ent != nullptr && ((*iterator)->ent->IsClient() || (*iterator)->ent->IsPlayerOwned()))
+		if ((*iterator) && (*iterator)->ent != nullptr && ((*iterator)->ent->IsClient() || (*iterator)->ent->IsPlayerOwned()))
 		{
 			Mob* potential_client = (*iterator)->ent->GetOwnerOrSelf();
 			if (potential_client->IsClient())
