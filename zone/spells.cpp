@@ -4163,16 +4163,6 @@ float Mob::CheckResistSpell(uint8 resist_type, uint16 spell_id, Mob *caster, Mob
 			level_mod += (2 * temp_level_diff);
 		}
 	}
-
-	// PvP
-	if (caster->IsClient() && target && target->IsClient() && !use_classic_resists) {
-		if (resist_chance > 1 && resist_chance < 200) {
-			resist_chance = resist_chance * 400 / (200 + resist_chance);		// this changes the curve from linear to the bow shape seen in parses
-		}
-		if (resist_chance > 196) {
-			resist_chance = 196;		// minimum 2% chance for spells to land
-		}
-	}
 	
 	if (!tick_save && caster->GetClass() == Class::Enchanter) {
 		// See http://www.eqemulator.org/forums/showthread.php?t=43370
@@ -4213,6 +4203,16 @@ float Mob::CheckResistSpell(uint8 resist_type, uint16 spell_id, Mob *caster, Mob
 	resist_chance += target_resist;
 	resist_chance += level_mod;
 
+	// PvP
+	if (caster->IsClient() && target && target->IsClient() && !use_classic_resists) {
+		if (resist_chance > 1 && resist_chance < 200) {
+			resist_chance = resist_chance * 400 / (200 + resist_chance);		// this changes the curve from linear to the bow shape seen in parses
+		}
+		if (resist_chance > 196) {
+			resist_chance = 196;		// minimum 2% chance for spells to land
+		}
+	}
+	
 	if (use_classic_resists && IsClient())
 	{
 		if (caster->IsNPC()) {
